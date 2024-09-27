@@ -1,0 +1,388 @@
+// Custom Select 
+.custom-select {
+    position: relative;
+    width: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    color: #272733;
+    height: 48px;
+}
+
+.select-button {
+    width: 100%;
+    font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 12px 20px 12px 10px;
+    border: 1px solid $white-color;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .25s ease-in-out;
+}
+
+.selected-value {
+    text-align: left;
+}
+
+.arrow {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    object-fit: fill;
+    transform: rotate(-180deg);
+    transition: transform ease-in-out 0.3s;
+
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 10px;
+        background-color: #000;
+        transition: background-color .3s ease-in-out;
+    }
+
+    &::after {
+        left: 1px;
+        transform: rotate(40deg);
+    }
+
+    &::before {
+        right: 1px;
+        transform: rotate(-40deg);
+    }
+}
+
+.select-dropdown {
+    position: absolute;
+    list-style: none;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #272733E5;
+    border: 1px solid #3D4050;
+    border-radius: 4px;
+    max-height: 180px;
+    overflow-y: auto;
+    transition: 0.5s ease;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    transform: scaleY(0);
+    opacity: 0;
+    visibility: hidden;
+    background-clip: content-box;
+    z-index: 15;
+}
+
+.select-dropdown:focus-within {
+    box-shadow: 0 10px 25px rgba(94, 108, 233, 0.6);
+}
+
+.select-dropdown li {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-dropdown li label {
+    width: 100%;
+    padding: 8px 0px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-dropdown li:hover,
+.select-dropdown input:checked~label {
+    color: $blue-color;
+}
+
+.select-dropdown input:focus~label {
+    background-color: #dfdfdf;
+}
+
+.select-dropdown input[type="radio"] {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+}
+
+/* interactivity */
+.custom-select.active .arrow {
+    transform: rotate(0deg);
+
+    &::after,
+    &::before {
+        background-color: #fff;
+    }
+}
+
+.custom-select.active .select-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+    border-radius: 0 0 3px 3px;
+}
+
+.custom-select.active .select-button {
+    background-color: #3D4050D9;
+    color: #fff;
+    border-color: #3D4050D9;
+    border-radius: 3px 3px 0 0;
+}
+
+// Custom scroll
+.select-dropdown::-webkit-scrollbar {
+    -ms-overflow-style: none;
+    display: none;
+    scrollbar-width: none;
+}
+
+.simplebar-content-wrapper {
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+    padding: 10px;
+}
+
+.simplebar-content-wrapper::-webkit-scrollbar,
+.simplebar-hide-scrollbar::-webkit-scrollbar {
+    display: initial;
+    width: initial;
+    height: initial;
+}
+
+.simplebar-scrollbar {
+    padding: 0;
+    background: #3E9CDC !important;
+    border-radius: 3px;
+}
+
+.simplebar-scrollbar::before {
+    background: #3E9CDC !important;
+}
+
+.simplebar-track.simplebar-vertical {
+    width: 7px !important;
+    top: 5px !important;
+    bottom: 5px;
+    right: 5px;
+    background-color: #3D4050;
+    border-radius: 3px;
+}
+
+// Custom input 
+.input {
+    padding: 12px 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #fff;
+    font-family: $primary-font;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    border-radius: 3px;
+    transition: all .25s ease-in-out;
+    height: 48px;
+    width: 100%;
+
+    &::placeholder {
+        color: #000;
+    }
+
+    &:focus-within {
+        filter: drop-shadow(0 0px 8px rgba(94, 108, 233, 0.6));
+    }
+}
+
+
+// Custom Input Range
+.range {
+    width: 100%;
+
+    &-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+
+        &__title {
+            font-family: $primary-font;
+            font-weight: 400;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        &__value {
+            font-family: $primary-font;
+            font-weight: 600;
+            font-size: 18px;
+            color: #fff;
+        }
+    }
+
+    &-input {
+        width: 100%;
+    }
+
+    &-input {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        cursor: pointer;
+        outline: none;
+        border-radius: 5px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.7);
+        position: relative;
+        z-index: 2;
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            left: 0px;
+            top: 0px;
+            border: 1px solid #fff;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            z-index: -1;
+        }
+    }
+
+    /* Thumb: webkit */
+    &-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 24px;
+        width: 24px;
+        background-color: #42A9ED;
+        border-radius: 50%;
+        border: 3px solid #286690;
+        transition: .2s ease-in-out;
+    }
+
+    /* Thumb: Firefox */
+    &-input::-moz-range-thumb {
+        height: 24px;
+        width: 24px;
+        background-color: #42A9ED;
+        border-radius: 50%;
+        border: 3px solid #286690;
+        transition: .2s ease-in-out;
+    }
+
+    /* Hover, active & focus Thumb: Webkit */
+    &-input::-webkit-slider-thumb:hover {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+
+    &-input:active::-webkit-slider-thumb {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+
+    &-input:focus::-webkit-slider-thumb {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+
+    /* Hover, active & focus Thumb: Firfox */
+    &-input::-moz-range-thumb:hover {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+
+    &-input:active::-moz-range-thumb {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+
+    &-input:focus::-moz-range-thumb {
+        box-shadow: 0 0 0 4px #42a8ed59;
+    }
+}
+
+// Custom Input File 
+.upload {
+    width: 100%;
+    height: 48px;
+    max-width: 365px;
+    position: relative;
+    z-index: 2;
+
+    &-file {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        border: 2px solid $blue-color;
+        padding: 12px;
+        border-radius: 4px;
+        background-color: $white-color;
+        color: rgba(39, 39, 51, 1);
+        transition: background-color .3s ease-in-out, border .3s ease-in-out;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        cursor: pointer;
+
+        &__input {
+            display: none;
+        }
+
+        &__text {
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: all .25s ease-in-out;
+            margin: 5px 0 2px;
+        }
+
+        &__icon {
+            width: 18px;
+            height: 21px;
+            margin-right: 10px;
+
+            path {
+                transition: fill .3s ease-in-out;
+            }
+        }
+
+        &__name {
+            font-family: $primary-font;
+            font-size: 18px;
+            font-weight: 600;
+            color: $white-color;
+            background: transparent;
+            transition: all .4s .3s ease-in-out;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            cursor: default;
+
+            &--show {
+                transform: translateY(50px);
+            }
+        }
+
+        &:hover {
+            border: 2px solid $white-color;
+            background-color: $blue-color;
+            color: $white-color;
+
+            .upload-file__icon path {
+                fill: $white-color;
+            }
+        }
+
+
+    }
+
+    &:focus-within {
+        box-shadow: 0 0px 35px rgba(94, 108, 233, 0.6);
+    }
+}
